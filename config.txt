@@ -1,0 +1,10 @@
+
+*** Variables ***
+#Key
+${key}          lumpsum3805325
+#IP-ForNow
+${urlFirst}     http://10.88.40.76/LumpsumWS/Service.asmx/StartUpApplication        
+${urlCmd}       http://10.88.40.76/LumpsumWS/Service.asmx/GetCmdValue
+#IP-For-Next
+#{urlFirst}     http://192.168.241.73/LumpsumWS/Service.asmx/StartUpApplication        
+#{urlCmd}       http://192.168.241.73/LumpsumWS/Service.asmx/GetCmdValue
