@@ -12,9 +12,12 @@ Resource        config.txt
 #if every run program else edit phone and time in cmd00023_Correct
 #and Test-StoryLine-Wrong-Special use to ditto cmd00023_Correct but different soap header
 #Test-StoryLine-Correct
-${cmd00023_Correct}                 {"cmd":"00023","param":["1111111802","2019-06-26 11:33:01"]}
+${newPhoneNumber}                   1111111807
+${cmd00023_Correct}                 {"cmd":"00023","param":["${newPhoneNumber}","2019-06-26 11:33:01"]}
 ${pincode}                          987654
 ${cmd00002_Correct}                 {"cmd":"00002","param":{"birth_date":"2005-08-10","gender":"1","age":"0","retire_age":"61","income_per_month":"0","expense_per_month":"0","growth_rate_income":"0.03","growth_rate_expense":"0.01","inflation":"0.03","invest_after_retire":"0.06","age_die":"76","expense_after_retire":"0.06","buy_car":"","baby":"","buy_insurance":"","advance_calculate":"N","user_id":"user_id_value"}}
+${cmd00022_Correct}                 {"cmd":"00022","param":{"":""}}
+
 
 #Test-StoryLine-InCorrect
 ${cmd00023_Duplicate}               {"cmd":"00023","param":["1111111111","2019-06-26 11:33:01"]}
@@ -168,6 +171,13 @@ TestCmd00004
     Get-From-Output     ${output}                   ['data']['msg']
     [return]            ${output}
 
+TestCmd00022
+    [Arguments]         ${input}                    ${inputToken}
+    ${token}            Get-From-Output             ${inputToken}                   ['token']
+    ${output}           CallCmd                     ${input}                         ${token}
+    Get-From-Output     ${output}                   ['data']
+    [return]            ${output}           
+
 TestCmd00002   
     [Arguments]         ${input}                    ${inputToken}
     ${token}            Get-From-Output             ${inputToken}                   ['token']
@@ -221,13 +231,16 @@ Test-StoryLine-Correct
     ${output00024}          TestCmd00024            ${output00023}
     #CallCmd00004-SetNewPincodeByMobile
     ${output00004}          TestCmd00004            ${output00024}
+    #CallCmd00022-GetDefaultData
+    ${output00022}          TestCmd00022            ${cmd00022_Correct}             ${output00004}
     #CallCmd00002-CalculateRetirement
     #return-value-of-00002 is very long then robot-framework have read problem 
-    ${output00002}          TestCmd00002            ${output00024}                  ${output00004}
+    ${output00002}          TestCmd00002            ${output00024}                  ${output00022}
 
-    #CallCmd00025-GetInformation
+    #StartUpApplication
     ${token}                ASynceWorkerFirst
-    ${output00025}          TestCmd00025            ${output00024}                  ${token}
+    #CallCmd00025-GetInformation
+    ${output00025}          TestCmd00025            ${output00024}                  ${token} 
     #CallCmd00029-GetListSuggestions
     ${output00029}          TestCmd00029            ${output00024}                  ${output00025}
     #CallCmd00032-Logout

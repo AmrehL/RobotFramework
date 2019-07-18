@@ -20,7 +20,7 @@ ${cmd00023_EmptyFull}               {"cmd":"00023","param":["",""]}
 ${cmd00023_EmptyPhoneNumber}        {"cmd":"00023","param":["","2019-06-26 11:33:01"]}
 ${cmd00023_EmptyDateTime}           {"cmd":"00023","param":["1111111111",""]}
 ${cmd00005_NoPhoneNumberInSys}      {"cmd":"00005","param":["0","222222"]}
-${cmd00005_NotRegisterPhoneNumber}  {"cmd":"00005","param":["1111111111","222222"]}
+${cmd00005_NotRegisterPhoneNumber}  {"cmd":"00005","param":["0","222222"]}
 ${cmd00005_InvalidPincode}          {"cmd":"00005","param":["9999999998","222223"]}
 
 
@@ -183,5 +183,5 @@ Test-StoryLine-InCorrect
     TestInvalid             ${cmd00023_EmptyDateTime}
     #InCorrectCase-in-CallCmd00005
     TestInvalid             ${cmd00005_NoPhoneNumberInSys}
-    TestInvalid             ${cmd00005_NoPhoneNumberInSys}
+    TestInvalid             ${cmd00005_NotRegisterPhoneNumber}
     TestInvalid             ${cmd00005_InvalidPincode}

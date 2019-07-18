@@ -27,7 +27,7 @@ ${cmd00024_EmptyFull}               {"cmd":"00024","param":["",""]}
 ${cmd00024_EmptyPhoneNumber}        {"cmd":"00024","param":["","222222"]}
 ${cmd00024_EmptyOtp}                {"cmd":"00024","param":["1111111111",""]}
 ${cmd00005_NoPhoneNumberInSys}      {"cmd":"00005","param":["0","222222"]}
-${cmd00005_NotRegisterPhoneNumber}  {"cmd":"00005","param":["1111111111","222222"]}
+${cmd00005_NotRegisterPhoneNumber}  {"cmd":"00005","param":["0","222222"]}
 ${cmd00005_InvalidPincode}          {"cmd":"00005","param":["9999999999","222223"]}
 
 
@@ -235,5 +235,5 @@ Test-StoryLine-InCorrect
     TestInvalid             ${cmd00024_EmptyOtp}
     #InCorrectCase-in-CallCmd00005
     TestInvalid             ${cmd00005_NoPhoneNumberInSys}
-    TestInvalid             ${cmd00005_NoPhoneNumberInSys}
+    TestInvalid             ${cmd00005_NotRegisterPhoneNumber}
     TestInvalid             ${cmd00005_InvalidPincode}
